@@ -1,10 +1,14 @@
 options {
+#        allow-query { 127.0.0.1; 10.10.1/26; 190.111.81.16/28;};
+#        allow-recursion { 127.0.0.1; 10.10.1/26; 190.111.81.16/28;};
+#        auth-nxdomain yes; 
 
 	allow-query { any; };
 	allow-recursion { any; };
-    listen-on { 127.0.0.1; 10.10.1.1; 190.111.81.23;};
-    listen-on-v6 { none; };
-    version "gateway dns server";
+        #forwarders { 178.63.26.173; 217.79.186.148; 78.46.76.144; 68.87.73.242; 68.87.71.226; };
+        listen-on { 127.0.0.1; 10.10.1.1; 190.111.81.23;};
+        listen-on-v6 { none; };
+        version "gateway dns server";
 	directory "/var/named"; 
 };
 
@@ -90,6 +94,26 @@ zone "net" {
 
 zone "org" {
         type delegation-only;
+};
+
+zone "dkcorp.ec" IN {
+      type master;
+      file "master/db.dkcorp.ec";
+};
+
+zone "flisol.ec" IN {
+        type master;
+        file "master/db.flisol.ec";
+};
+
+zone "sle.ec" IN {
+        type master;
+        file "master/db.sle.ec";
+};
+
+zone "sistelcompu.ec" IN {
+        type master;
+        file "master/db.sistelcompu.ec";
 };
 
 zone "unixlegion.geek" IN {
